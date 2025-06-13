@@ -2,7 +2,7 @@
 // name: OpenAI Chat
 // icon: openai-icon.svg
 // identifier: com.pilotmoon.popclip.extension.chatgpt
-// description: Send the selected text to OpenAI's Chat API.
+// description: Send the selected text to an OpenAI-compatible Chat API.
 // app: { name: Chat API, link: 'https://platform.openai.com/docs/api-reference/chat' }
 // popclipVersion: 4586
 // keywords: openai chatgpt
@@ -11,20 +11,20 @@
 import axios from "axios";
 
 export const options = [
-	{
-		identifier: "apikey",
-		label: "API Key",
-		type: "secret",
-		description:
-			"Obtain an API key from: https://platform.openai.com/account/api-keys",
-	},
-	{
-		identifier: "model",
-		label: "Model",
-		type: "multiple",
-		defaultValue: "gpt-4o-mini",
-		values: ["gpt-4o", "gpt-4o-mini", "o1", "o1-mini", "o3-mini"],
-	},
+        {
+                identifier: "apikey",
+                label: "API Key",
+                type: "secret",
+                description:
+                        "Obtain an API key from: https://openrouter.ai/",
+        },
+        {
+                identifier: "model",
+                label: "Model",
+                type: "string",
+                defaultValue: "openai/gpt-3.5-turbo",
+                description: "Model identifier to use with OpenRouter",
+        },
 	{
 		identifier: "systemMessage",
 		label: "System Message",
@@ -32,13 +32,13 @@ export const options = [
 		description:
 			"Optional system message to specify the behaviour of the AI assistant.",
 	},
-	{
-		identifier: "domain",
-		label: "API Base Domain",
-		type: "string",
-		defaultValue: "api.openai.com",
-		description: "Leave as default unless you use a custom server.",
-	},
+        {
+                identifier: "domain",
+                label: "API Base Domain",
+                type: "string",
+                defaultValue: "openrouter.ai/api",
+                description: "Leave as default unless you use a custom server.",
+        },
 	{
 		identifier: "textMode",
 		label: "Response Handling",
@@ -163,7 +163,7 @@ const chat: ActionFunction<Options> = async (input, options) => {
 export function getErrorInfo(error: unknown): string {
 	if (typeof error === "object" && error !== null && "response" in error) {
 		const response = (error as any).response;
-		return `Message from OpenAI (code ${response.status}): ${response.data.error.message}`;
+                return `Message from API (code ${response.status}): ${response.data.error.message}`;
 	} else {
 		return String(error);
 	}

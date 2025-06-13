@@ -1,17 +1,16 @@
 # OpenAI Chat
 
-A PopClip extension to interact with [OpenAI](https://openai.com/)'s
-[Chat API](https://platform.openai.com/docs/api-reference/chat).
+A PopClip extension to interact with
+[OpenRouter](https://openrouter.ai/)'s OpenAI-compatible API.
 
-**Note: Requires pre-paid API credits on your OpenAI account. API usage is not
-included in ChatGPT Plus subscripiton.**
+**Note: Requires an API key for OpenRouter.**
 
 See also: [ChatGPT Website](https://www.popclip.app/extensions/x/73pbck)
 extension, which opens a new chat on the ChatGPT website.
 
 ### Actions
 
-The main action, **Chat**, sends the selected text to OpenAI and either pastes
+The main action, **Chat**, sends the selected text to the API and either pastes
 the response after the selected text, replaces the selected text with the
 response, or copies the response to the clipboard.
 
@@ -22,18 +21,12 @@ fresh conversation.
 
 #### API Key
 
-To use this extension, you need to provide it with an API Key for an OpenAI
-account. To get an API Key:
-
-1. Sign up for an OpenAI Account here: <https://platform.openai.com/>
-2. Generate an API key here: <https://platform.openai.com/account/api-keys>
-3. Copy and paste the API Key (it starts with `sk-`) into the _API Key_ field in
-   the extension's settings.
+Provide your OpenRouter API key.
 
 #### Model
 
-Available values are `gpt-4o`, `gpt-4o-mini`, `o1`, `o1-mini` and `o3-mini`. Note that some accounts might not be
-able to access all models — see OpenAI's documentation for details.
+The model identifier to use with OpenRouter. Enter any model string
+supported by the service.
 
 #### System Message
 
@@ -51,8 +44,7 @@ specified.
 
 #### API Base Domain
 
-The base domain for the OpenAI API. This should be `api.openai.com` unless you
-are using a custom domain to access the API.
+The base domain for the API. Defaults to `openrouter.ai/api`.
 
 #### Response Handling
 
@@ -81,10 +73,9 @@ Control whether or not to show the reset action in the popup.
 
 You may see the following error:
 
-`Message from OpenAI (code 429): You exceeded your current quota, please check your plan and billing data.`
+`Message from API (code 429): You exceeded your current quota.`
 
-The message means you need to add some credit to you OpenAI API account. You can
-do this at <https://platform.openai.com/account/billing/overview>.
+The message indicates something went wrong with the API request.
 
 ## Notes
 
